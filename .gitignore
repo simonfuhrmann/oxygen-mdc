@@ -1,0 +1,4 @@
+node_modules/
+package-lock.json
+oxy-*.js
+oxy-*.d.ts
