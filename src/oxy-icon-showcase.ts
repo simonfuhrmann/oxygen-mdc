@@ -23,7 +23,8 @@ export class OxyIcon extends LitElement {
   static get styles() {
     return css`
       :host {
-        padding: 32px;
+        display: block;
+        padding: 16px;
       }
       .icon {
         display: inline-flex;
@@ -35,7 +36,11 @@ export class OxyIcon extends LitElement {
         text-align: center;
       }
       oxy-icon {
+        color: var(--oxy-icon-color, black);
         padding: 8px;
+      }
+      span {
+        color: var(--oxy-icon-name-color, gray);
       }
     `;
   }
