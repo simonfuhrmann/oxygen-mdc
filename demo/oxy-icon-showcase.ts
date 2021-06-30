@@ -1,19 +1,19 @@
 import {LitElement, css, html} from 'lit';
 import {customElement} from 'lit/decorators';
 
-import {OxyIconset} from './oxy-iconset';
-import './oxy-icon';
-import './oxy-icons-av';
-import './oxy-icons-base';
-import './oxy-icons-communication';
-import './oxy-icons-device';
-import './oxy-icons-editor';
-import './oxy-icons-hardware';
-import './oxy-icons-image';
-import './oxy-icons-maps';
-import './oxy-icons-notification';
-import './oxy-icons-places';
-import './oxy-icons-social';
+import {OxyIconset} from '../src/oxy-iconset';
+import '../src/oxy-icon';
+import '../src/oxy-icons-av';
+import '../src/oxy-icons-base';
+import '../src/oxy-icons-communication';
+import '../src/oxy-icons-device';
+import '../src/oxy-icons-editor';
+import '../src/oxy-icons-hardware';
+import '../src/oxy-icons-image';
+import '../src/oxy-icons-maps';
+import '../src/oxy-icons-notification';
+import '../src/oxy-icons-places';
+import '../src/oxy-icons-social';
 
 /**
  * An element that displays all available icons.
@@ -36,7 +36,6 @@ export class OxyIcon extends LitElement {
         text-align: center;
       }
       oxy-icon {
-        color: var(--oxy-icon-color, black);
         padding: 8px;
       }
       span {
