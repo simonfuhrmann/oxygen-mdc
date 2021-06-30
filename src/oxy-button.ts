@@ -18,13 +18,14 @@ export class OxyButton extends LitElement {
         padding: 8px;
         position: relative;
         font-weight: 500;
-        background-color: var(--oxy-button-background-color, transparent);
+        background: transparent;
         border-radius: 4px;
         outline: none;
         cursor: pointer;
         user-select: none;
       }
-      :host::before {
+      :host::before,
+      :host::after {
         position: absolute;
         top: 0;
         left: 0;
@@ -33,25 +34,22 @@ export class OxyButton extends LitElement {
         pointer-events: none;
         border-radius: inherit;
         content: "";
+      }
+      :host::before {
         opacity: 0;
-        /* Transitions can cause flicker in dialogs. 0_o */
         transition: all 50ms;
       }
       :host(:hover)::before {
-        background-color: var(--oxy-button-hover-color,
-                          var(--oxy-button-text-color, currentcolor));
+        background: var(--oxy-button-hover-color, currentcolor);
         opacity: 0.1;
       }
-      /* Use :focus-visible once supported. */
-      :host(:focus)::before {
-        background-color: var(--oxy-button-focus-color,
-                          var(--oxy-button-text-color, currentcolor));
-        opacity: 0.15;
-      }
-      :host(:active)::before {
-        background-color: var(--oxy-button-active-color,
-                          var(--oxy-button-text-color, currentcolor));
+      :host(:active)::before,
+      :host([active])::before {
+        background: var(--oxy-button-active-color, currentcolor);
         opacity: 0.2;
+      }
+      :host(:focus-visible)::after {
+        box-shadow: 0 0 0 2px var(--oxy-button-focus-color, cornflowerblue);
       }
       :host([disabled]) {
         opacity: 0.5;
@@ -73,6 +71,7 @@ export class OxyButton extends LitElement {
 
   @property({type: Boolean, reflect: true}) raised = false;
   @property({type: Boolean, reflect: true}) disabled = false;
+  @property({type: Boolean, reflect: true}) active = false;
 
   firstUpdated() {
     this.setAttribute('tabindex', '0');

@@ -14,26 +14,27 @@ export class OxyInput extends LitElement {
         flex-direction: column;
         margin: 2px 0;
       }
+      :host([disabled]) {
+        opacity: 0.5;
+      }
       #container {
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        background-color: var(--oxy-input-background-color, white);
-        border: var(--oxy-input-border-width, 1px) solid
-                var(--oxy-input-border-color, #ddd);
+        background: var(--oxy-input-background, white);
+        border: var(--oxy-input-border, 1px solid #ddd);
         border-radius: var(--oxy-input-border-radius, 2px);
         box-shadow: var(--oxy-input-box-shadow, 0 0 0 white);
         transition: all 25ms;
       }
       :host([focused]) #container {
-        background-color: var(--oxy-input-background-color-focused, white);
-        border: var(--oxy-input-border-width, 1px) solid
-                var(--oxy-input-border-color-focused, #ccc);
+        background: var(--oxy-input-background-focused, white);
+        border: var(--oxy-input-border-focused, 1px solid #ccc);
         box-shadow: var(--oxy-input-box-shadow-focused, 0 0 0 white);
       }
       input {
         flex-grow: 1;
-        color: var(--oxy-input-text-color, black);
+        color: var(--oxy-input-text-color, currentcolor);
         font: inherit;
         padding: 0;
         margin: var(--oxy-input-text-padding, 6px);

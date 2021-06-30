@@ -18,24 +18,22 @@ export class OxyTextarea extends LitElement {
         flex-grow: 1;
         flex-shrink: 0;
         align-items: stretch;
-        background-color: var(--oxy-textarea-background-color, white);
-        border: var(--oxy-textarea-border-width, 1px) solid
-                var(--oxy-textarea-border-color, #ddd);
+        background: var(--oxy-textarea-background, white);
+        border: var(--oxy-textarea-border, 1px solid #ddd);
         border-radius: var(--oxy-textarea-border-radius, 2px);
-        box-shadow: var(--oxy-textarea-box-shadow, 0 0 0 white);
+        box-shadow: var(--oxy-textarea-box-shadow, none);
         transition: all 50ms;
       }
       :host([focused]) #container {
-        background-color: var(--oxy-textarea-background-color-focused, white);
-        border: var(--oxy-textarea-border-width, 1px) solid
-                var(--oxy-textarea-border-color-focused, #ddd);
-        box-shadow: var(--oxy-textarea-box-shadow-focused, 0 0 0 white);
+        background: var(--oxy-textarea-background-focused, white);
+        border: var(--oxy-textarea-border-focused, 1px solid #ddd);
+        box-shadow: var(--oxy-textarea-box-shadow-focused, none);
       }
       textarea {
         flex-grow: 1;
         flex-shrink: 0;
         padding: var(--oxy-textarea-text-padding, 6px);
-        color: var(--oxy-textarea-text-color, black);
+        color: var(--oxy-textarea-text-color, currentcolor);
         font: inherit;
         margin: 0;
         border: none;
@@ -45,6 +43,9 @@ export class OxyTextarea extends LitElement {
         background: transparent;
         width: 100%;
         resize: var(--oxy-textarea-resize, none);
+      }
+      textarea::placeholder {
+        color: var(--oxy-textarea-placeholder-color, gray);
       }
       textarea::-webkit-scrollbar {
         width: var(--oxy-scrollbar-width, 12px);
@@ -67,7 +68,7 @@ export class OxyTextarea extends LitElement {
     `;
   }
 
-  private textarea_: HTMLInputElement|null = null;
+  private textarea: HTMLInputElement|null = null;
 
   @property({type: String}) value = '';
   @property({type: String}) placeholder = '';
@@ -94,22 +95,22 @@ export class OxyTextarea extends LitElement {
 
   firstUpdated() {
     if (!this.shadowRoot) return;
-    this.textarea_ = <HTMLInputElement>this.shadowRoot.getElementById('area');
+    this.textarea = this.shadowRoot.getElementById('area') as HTMLInputElement;
   }
 
   focus() {
-    if (!this.textarea_) return;
-    this.textarea_.focus();
+    if (!this.textarea) return;
+    this.textarea.focus();
   }
 
   select() {
-    if (!this.textarea_) return;
-    this.textarea_.setSelectionRange(0, this.textarea_.value.length);
+    if (!this.textarea) return;
+    this.textarea.setSelectionRange(0, this.textarea.value.length);
   }
 
   private onValueChanged() {
-    if (!this.textarea_) return;
-    this.value = this.textarea_.value;
+    if (!this.textarea) return;
+    this.value = this.textarea.value;
     this.dispatchEvent(new CustomEvent('change', {detail: this.value}));
   }
 

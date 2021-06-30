@@ -6,8 +6,9 @@ import {customElement, property, query} from 'lit/decorators';
  *
  * - Attribute 'backdrop': Makes a modal dialg (prevent clicks on background).
  * - Attribute 'noescape': Disables ESC key or click on backdrop to close.
+ * - Attribute 'opened': Controls the open/closed state of the dialog.
  * - Call open() or close() to open/close the dialog.
- * - Events 'open' and 'close' are fired on open/close.
+ * - Events 'opened' and 'closed' are fired on open/close.
  *
  * Focus trapping is currently not implemented. Which means that focus can
  * leave the dialog, and focus is not reset after the dialog is closed.
@@ -46,7 +47,7 @@ export class OxyDialog extends LitElement {
       }
       #dialog {
         background: var(--oxy-dialog-background, white);
-        color: var(--oxy-dialog-text-color, black);
+        color: var(--oxy-dialog-text-color, currentcolor);
         min-width: var(--oxy-dialog-min-width, 200px);
         max-width: var(--oxy-dialog-max-width, 500px);
         max-height: var(--oxy-dialog-max-height, 80%);
@@ -103,7 +104,7 @@ export class OxyDialog extends LitElement {
       </div>
 
       <div id="layout">
-        <div id="dialog">
+        <div id="dialog" part="dialog">
           ${this.heading ? html`<h2>${this.heading}</h2>` : html``}
           <slot></slot>
           <slot name="buttons"></slot>

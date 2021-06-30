@@ -12,42 +12,67 @@ export class OxyCheckbox extends LitElement {
         display: flex;
         align-items: center;
         user-select: none;
-        outline: 0;
+        outline: none;
+        position: relative;
+        border-radius: 4px;
+        margin: 4px;
+        cursor: pointer;
       }
       :host([disabled]) {
         pointer-events: none;
         opacity: 0.5;
       }
 
-      :host #checkbox {
+      :host::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        content: "";
+      }
+      :host(:focus-visible)::after {
+        box-shadow: 0 0 0 2px var(--oxy-button-focus-color, cornflowerblue);
+      }
+
+      #label {
+        margin: 2px 8px;
+        flex-grow: 1;
+      }
+      #checkbox {
         flex-shrink: 0;
         position: relative;
-        width: 1.2em;
-        height: 1.2em;
+        width: calc(1em + 3px);
+        height: calc(1em + 3px);
         border-radius: 4px;
-        margin: 4px;
+        margin: 2px;
         box-sizing: border-box;
-        background: var(--oxy-checkbox-unchecked-background, #aaa);
-        border: var(--oxy-checkbox-unchecked-border, 2px solid #999);
+        border: var(--oxy-checkbox-unchecked-border, 2px solid gray);
+        background: var(--oxy-checkbox-unchecked-background, none);
+        transition: transform 50ms;
       }
       :host([checked]) #checkbox,
       :host([indeterminate]) #checkbox {
-        border: none;
+        border: var(--oxy-checkbox-checked-border, none);
         background: var(--oxy-checkbox-checked-background, #28f);
       }
       :host(:active) #checkbox {
+        transform: scale(0.9);
+      }
+      :host([checked]:active) #checkbox {
         transform: scale(1.1);
-        transition: transform 50ms;
       }
       :host #checkbox::after {
         position: absolute;
         content: "";
       }
       :host([checked]) #checkbox::after {
-        top: 10%;
-        left: 32%;
-        width: 0.3em;
-        height: 0.6em;
+        top: 16%;
+        left: 35%;
+        width: 0.25em;
+        height: 0.5em;
         border: 0 solid var(--oxy-checkbox-check-color, white);
         border-width: 0 2px 2px 0;
         transform: rotate(45deg);
@@ -59,10 +84,6 @@ export class OxyCheckbox extends LitElement {
         width: auto;
         height: 10%;
         background: var(--oxy-checkbox-check-color, white);
-      }
-      :host #label {
-        margin: 4px 8px;
-        flex-grow: 1;
       }
     `;
   }
