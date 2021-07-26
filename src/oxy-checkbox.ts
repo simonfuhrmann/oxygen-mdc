@@ -34,7 +34,7 @@ export class OxyCheckbox extends LitElement {
         content: "";
       }
       :host(:focus-visible)::after {
-        box-shadow: 0 0 0 2px var(--oxy-button-focus-color, cornflowerblue);
+        box-shadow: 0 0 0 2px var(--oxy-checkbox-focus-color, cornflowerblue);
       }
 
       #label {

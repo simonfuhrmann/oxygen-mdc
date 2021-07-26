@@ -1,6 +1,6 @@
 {
   "name": "oxygen-mdc",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Light-weight material design web components",
   "author": "Simon Fuhrmann",
   "license": "BSD-2-Clause",
@@ -12,6 +12,7 @@
   },
   "scripts": {
     "demo": "parcel demo/index.html --no-cache",
+    "build-demo": "parcel build demo/index.html",
     "prepublish": "tsc",
     "clean": "rm oxy-*.js oxy-*.d.ts"
   },
