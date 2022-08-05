@@ -5,14 +5,23 @@ elements, such as text input, button, icons, etc.
 
 Demo: https://oxygen-mdc.web.app/
 
+## Bugs and missing features
+
+* Missing support for keyboard navigation: Buttons, checkboxes, tabs, etc.
+  cannot be activated with Enter or Space.
+* The slider cannot be changed with the keyboard. On mobile, trying to change
+  the slider may scroll the page.
+* Tabbing through elements in dialogs is broken, focus trapping and focus
+  restore is not properly implemented.
+
 ## Changelog
 
 ### Version 1.0.0
 
 Changes for version 1.0.0 are centered around a different style for focused
-attributes using a blue outline (by default) instead of a background color.
+elements using a blue outline (by default) instead of a background color.
 Further, the focus will only show when the keyboard is used for navigation,
-relying on the `focus-visible` selector instead of `focus`. Several other CSS
+relying on the `:focus-visible` selector instead of `:focus`. Several other CSS
 simplifications have been done.
 
 API breaking changes for Version 1.0.0
