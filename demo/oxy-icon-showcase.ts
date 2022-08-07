@@ -1,5 +1,5 @@
 import {LitElement, css, html} from 'lit';
-import {customElement} from 'lit/decorators';
+import {customElement} from 'lit/decorators.js';
 
 import {OxyIconset} from '../src/oxy-iconset';
 import '../src/oxy-icon';
