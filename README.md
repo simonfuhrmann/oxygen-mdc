@@ -5,6 +5,26 @@ elements, such as text input, button, icons, etc.
 
 Demo: https://oxygen-mdc.web.app/
 
+## Usage
+
+Install the Oxygen web components in:
+
+```
+npm install --save oxygen-mdc
+```
+
+Import the components into your code. For the button, use:
+
+```ts
+import 'oxygen-mdc/oxy-button';
+```
+
+Finally, use the component in your code:
+
+```html
+<oxy-button>Push me</oxy-button>
+```
+
 ## Bugs and missing features
 
 * Missing support for keyboard navigation: Buttons, checkboxes, tabs, etc.
@@ -15,6 +35,11 @@ Demo: https://oxygen-mdc.web.app/
   restore is not properly implemented.
 
 ## Changelog
+
+### Version 1.1.0
+
+* Added `HTMLElementTagNameMap` to all elements
+* Changed import to `lit/decorators.js` to include the `.js` extension
 
 ### Version 1.0.0
 
