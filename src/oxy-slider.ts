@@ -179,3 +179,9 @@ export class OxySlider extends LitElement {
     this.thumb.style.left = (100.0 * ratio) + '%';
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-slider": OxySlider;
+  }
+}

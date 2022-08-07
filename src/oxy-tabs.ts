@@ -97,3 +97,9 @@ export class OxyTabs extends LitElement {
     return children;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-tabs": OxyTabs;
+  }
+}

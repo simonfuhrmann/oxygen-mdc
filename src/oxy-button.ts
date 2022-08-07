@@ -92,3 +92,9 @@ export class OxyButton extends LitElement {
     return html`<slot></slot>`;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-button": OxyButton;
+  }
+}

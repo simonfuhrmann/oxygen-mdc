@@ -49,3 +49,9 @@ export class OxyIcon extends LitElement {
       </svg>`;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-icon": OxyIcon;
+  }
+}

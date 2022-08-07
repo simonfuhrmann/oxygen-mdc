@@ -160,3 +160,9 @@ export class OxyInput extends LitElement {
     this.focused = false;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-input": OxyInput;
+  }
+}

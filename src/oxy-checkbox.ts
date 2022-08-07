@@ -130,3 +130,9 @@ export class OxyCheckbox extends LitElement {
     this.checked = !this.checked;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-checkbox": OxyCheckbox;
+  }
+}

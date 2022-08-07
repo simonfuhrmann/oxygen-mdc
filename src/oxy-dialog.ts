@@ -192,3 +192,9 @@ export class OxyDialog extends LitElement {
   private onTabPress() {
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-dialog": OxyDialog;
+  }
+}

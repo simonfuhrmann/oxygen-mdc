@@ -91,3 +91,9 @@ export class OxyToast extends LitElement {
     }
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-toast": OxyToast;
+  }
+}

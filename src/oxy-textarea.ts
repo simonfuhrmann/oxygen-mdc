@@ -125,3 +125,9 @@ export class OxyTextarea extends LitElement {
     this.focused = false;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "oxy-textarea": OxyTextarea;
+  }
+}
