@@ -19,11 +19,11 @@ export class OxyTabs extends LitElement {
       }
       :host([orientation="horizontal"]) {
         flex-direction: row;
-        border-bottom: var(--oxy-tabs-border, 1px solid black);
+        border-bottom: var(--oxy-tabs-border, 1px solid #ccc);
       }
       :host([orientation="vertical"]) {
         flex-direction: column;
-        border-left: var(--oxy-tabs-border, 1px solid black);
+        border-left: var(--oxy-tabs-border, 1px solid #ccc);
       }
     `;
   }

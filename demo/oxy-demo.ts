@@ -162,19 +162,20 @@ export class OxyDemoElements extends LitElement {
 
     /* Tabs style. */
 
-    #tabs {
-    }
     oxy-tabs:not(:last-child) {
       margin-bottom: 16px;
     }
     oxy-tabs {
       margin: 0 32px;
     }
+    oxy-tabs[orientation="horizontal"] {
+      justify-content: center;
+    }
     :host([light]) oxy-tabs {
-      --oxy-tabs-border-color: black;
+      --oxy-tabs-border: 1px solid var(--light-theme-c6);
     }
     :host([dark]) oxy-tabs {
-      --oxy-tabs-border: 1px solid gray;
+      --oxy-tabs-border: 1px solid var(--dark-theme-c6);
       --oxy-tab-indicator-color: #28f;
     }
 
@@ -258,16 +259,14 @@ export class OxyDemoElements extends LitElement {
 
       <div class="paper-card">
         <h2>&lt;oxy-tabs&gt;</h2>
-        <div id="tabs">
-          <oxy-tabs>
-            <oxy-tab>Horizontal tab 1</oxy-tab>
-            <oxy-tab>Horizontal tab 2</oxy-tab>
-          </oxy-tabs>
-          <oxy-tabs orientation="vertical">
-            <oxy-tab>Vertical tab 1</oxy-tab>
-            <oxy-tab>Vertical tab 2</oxy-tab>
-          </oxy-tabs>
-        </div>
+        <oxy-tabs orientation="horizontal">
+          <oxy-tab>Horizontal tab 1</oxy-tab>
+          <oxy-tab>Horizontal tab 2</oxy-tab>
+        </oxy-tabs>
+        <oxy-tabs orientation="vertical">
+          <oxy-tab>Vertical tab 1</oxy-tab>
+          <oxy-tab>Vertical tab 2</oxy-tab>
+        </oxy-tabs>
       </div>
 
       <oxy-dialog

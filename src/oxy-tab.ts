@@ -17,6 +17,7 @@ export class OxyTab extends LitElement {
         outline: none;
         overflow: hidden;
         min-width: 64px;
+        padding: 8px 16px;
         user-select: none;
         opacity: 0.7;
       }
@@ -25,45 +26,55 @@ export class OxyTab extends LitElement {
       :host([selected]) {
         opacity: 1.0;
       }
-      :host([orientation="horizontal"]) {
-        padding: 8px 16px;
-      }
-      :host([orientation="vertical"]) {
-        padding: 8px 16px;
-      }
+
+      /* Indicator common styles and animation. */
+
       :host::before {
         display: block;
         content: "";
         position: absolute;
-        background-color: var(--oxy-tab-indicator-color, #333);
         transition: var(--oxy-tab-animation-duration, 100ms) all;
         transition-timing-function: cubic-bezier(.15, .35, .5, 1.5);
       }
+
+      /* Indicator color for inactive, hover/focused and selected. */
+
+      :host::before {
+        background-color: var(--oxy-tab-indicator-color-inactive, transparent);
+      }
+      :host(:hover)::before,
+      :host(:focus)::before {
+        background-color: var(--oxy-tab-indicator-color-focus, #999);
+      }
+      :host([selected])::before {
+        background-color: var(--oxy-tab-indicator-color, black);
+      }
+
+      /* Indicator size and shape for different orientations. */
+
       :host([orientation="horizontal"])::before {
         bottom: 0;
-        left: 50%;
-        height: 3px;
-        width: 0%;
-        border-radius: 3px 3px 0 0;
-        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.0);
+        height: var(--oxy-tab-indicator-size, 3px);
+        width: var(--oxy-tab-indicator-width-inactive, 0%);
+        left: calc(50% - var(--oxy-tab-indicator-width-inactive, 0%) / 2);
+        border-radius: var(--oxy-tab-horizontal-indicator-border-radius,
+                       3px 3px 0 0);
       }
       :host([orientation="horizontal"][selected])::before {
-        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.5);
-        width: 50%;
-        left: 25%;
+        width: var(--oxy-tab-indicator-width, 90%);
+        left: calc(50% - var(--oxy-tab-indicator-width, 90%) / 2);
       }
       :host([orientation="vertical"])::before {
         left: 0;
-        bottom: 50%;
-        width: 3px;
-        height: 0%;
-        border-radius: 0 3px 3px 0;
-        box-shadow: -1px 0 2px rgba(0, 0, 0, 0.0);
+        width: var(--oxy-tab-indicator-size, 3px);
+        height: var(--oxy-tab-indicator-height-inactive, 0%);
+        bottom: calc(50% - var(--oxy-tab-indicator-height-inactive, 0%) / 2);
+        border-radius: var(--oxy-tab-vertical-indicator-border-radius,
+                       0 3px 3px 0);
       }
       :host([orientation="vertical"][selected])::before {
-        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
-        height: 70%;
-        bottom: 15%;
+        height: var(--oxy-tab-indicator-height, 70%);
+        bottom: calc(50% - var(--oxy-tab-indicator-height, 70%) / 2);
       }
     `;
   }
