@@ -29,7 +29,7 @@ export class OxyInput extends LitElement {
       }
       :host([focused]) #container {
         background: var(--oxy-input-background-focused, white);
-        border: var(--oxy-input-border-focused, 1px solid #ccc);
+        border: var(--oxy-input-border-focused, 1px solid #aaa);
         box-shadow: var(--oxy-input-box-shadow-focused, 0 0 0 white);
       }
       input {
