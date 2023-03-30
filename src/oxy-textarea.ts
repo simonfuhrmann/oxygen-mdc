@@ -26,7 +26,7 @@ export class OxyTextarea extends LitElement {
       }
       :host([focused]) #container {
         background: var(--oxy-textarea-background-focused, white);
-        border: var(--oxy-textarea-border-focused, 1px solid #ddd);
+        border: var(--oxy-textarea-border-focused, 1px solid #aaa);
         box-shadow: var(--oxy-textarea-box-shadow-focused, none);
       }
       textarea {
