@@ -36,6 +36,11 @@ Finally, use the component in your code:
 
 ## Changelog
 
+### Version 1.2.0
+
+* Overhaul of the `oxy-tab` component. The styles are cleaner, and styleability
+  was improved. See the source file for style variables.
+
 ### Version 1.1.0
 
 * Added `HTMLElementTagNameMap` to all elements
