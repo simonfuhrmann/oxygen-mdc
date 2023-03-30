@@ -39,7 +39,6 @@ export class OxyTabs extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    // this.applyOrientationToChildren();
   }
 
   updated(changedProps: Map<string, any>) {
@@ -56,10 +55,9 @@ export class OxyTabs extends LitElement {
   }
 
   private applyOrientationToChildren() {
-    console.log('applying orientation', this.orientation);
     this.childNodes.forEach(node => {
       if (node.nodeType != Node.ELEMENT_NODE) return;
-      const elem = <Element>(node);
+      const elem = node as Element;
       elem.setAttribute('orientation', this.orientation);
     });
   }
