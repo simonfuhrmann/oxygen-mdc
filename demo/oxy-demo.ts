@@ -260,8 +260,9 @@ export class OxyDemoElements extends LitElement {
       <div class="paper-card">
         <h2>&lt;oxy-tabs&gt;</h2>
         <oxy-tabs orientation="horizontal">
-          <oxy-tab>Horizontal tab 1</oxy-tab>
-          <oxy-tab>Horizontal tab 2</oxy-tab>
+          <oxy-tab>Tab 1</oxy-tab>
+          <oxy-tab>Tab 2</oxy-tab>
+          <oxy-tab disabled>Tab 3</oxy-tab>
         </oxy-tabs>
         <oxy-tabs orientation="vertical">
           <oxy-tab>Vertical tab 1</oxy-tab>

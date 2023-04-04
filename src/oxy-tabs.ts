@@ -64,12 +64,17 @@ export class OxyTabs extends LitElement {
 
   private onClick(event: MouseEvent) {
     // Iterate the tree up to find direct child clicked on.
-    let clickedChild: HTMLElement|null = <HTMLElement>event.target;
+    let clickedChild: HTMLElement|null = event.target as HTMLElement;
     while (clickedChild) {
       if (clickedChild.parentElement === this) break;
       clickedChild = clickedChild.parentElement;
     }
     if (!clickedChild) return;
+
+    // Ignore unselectable and disabled children.
+    if (clickedChild.getAttribute('selectable') === null) return;
+    if (clickedChild.getAttribute('disabled') !== null) return;
+
     // Find index of direct child.
     const children = this.getDirectChildren();
     this.selected = children.indexOf(clickedChild);
