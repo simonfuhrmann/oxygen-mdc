@@ -1,5 +1,6 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import {KeyboardController} from './utils/keyboard-controller';
 
 /**
  * A simple button element with some default styles. The button can be
@@ -27,10 +28,7 @@ export class OxyButton extends LitElement {
       :host::before,
       :host::after {
         position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+        inset: 0;
         pointer-events: none;
         border-radius: inherit;
         content: "";
@@ -69,9 +67,19 @@ export class OxyButton extends LitElement {
     `;
   }
 
+  private keyboardController = new KeyboardController(this);
+
   @property({type: Boolean, reflect: true}) raised = false;
   @property({type: Boolean, reflect: true}) disabled = false;
   @property({type: Boolean, reflect: true}) active = false;
+
+  constructor() {
+    super();
+    this.keyboardController.setActiveDuringSpace();
+    this.keyboardController.setActiveDuringEnter();
+    this.keyboardController.setClickOnEnterDown();
+    this.keyboardController.setClickOnSpaceUp();
+  }
 
   firstUpdated() {
     this.setAttribute('tabindex', '0');

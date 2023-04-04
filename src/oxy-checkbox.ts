@@ -1,5 +1,6 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import {KeyboardController} from './utils/keyboard-controller';
 
 /**
  * A basic checkbox element.
@@ -58,10 +59,12 @@ export class OxyCheckbox extends LitElement {
         border: var(--oxy-checkbox-checked-border, none);
         background: var(--oxy-checkbox-checked-background, #28f);
       }
-      :host(:active) #checkbox {
+      :host(:active) #checkbox,
+      :host([active]) #checkbox {
         transform: scale(0.9);
       }
-      :host([checked]:active) #checkbox {
+      :host([checked]:active) #checkbox,
+      :host([checked][active]) #checkbox {
         transform: scale(1.1);
       }
       :host #checkbox::after {
@@ -88,9 +91,17 @@ export class OxyCheckbox extends LitElement {
     `;
   }
 
+  private keyboardController = new KeyboardController(this);
+
   @property({type: Boolean, reflect: true}) checked: boolean = false;
   @property({type: Boolean, reflect: true}) indeterminate: boolean = false;
   @property({type: Boolean, reflect: true}) disabled: boolean = false;
+
+  constructor() {
+    super();
+    this.keyboardController.setActiveDuringSpace();
+    this.keyboardController.setClickOnSpaceUp();
+  }
 
   firstUpdated() {
     this.setAttribute('role', 'checkbox');
