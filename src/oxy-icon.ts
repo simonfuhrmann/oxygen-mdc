@@ -13,29 +13,27 @@ import {OxyIconset} from './oxy-iconset';
  */
 @customElement('oxy-icon')
 export class OxyIcon extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        fill: currentcolor;
-        stroke: none;
-        stroke-width: 0;
-        width: 24px;
-        height: 24px;
-      }
-      svg {
-        display: block;
-        width: 100%;
-        height: 100%
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      fill: currentcolor;
+      stroke: none;
+      stroke-width: 0;
+      width: 24px;
+      height: 24px;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%
+    }
+  `;
 
   @property({type: String}) icon = '';
 
-  render() {
+  override render() {
     const parts = this.icon.split(':');
     const iconsetName = parts[0] || '';
     const iconName = parts[1] || '';

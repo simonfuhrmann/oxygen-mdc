@@ -10,62 +10,60 @@ import {KeyboardController} from './utils/keyboard-controller';
  */
 @customElement('oxy-button')
 export class OxyButton extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
-        position: relative;
-        font-weight: 500;
-        background: transparent;
-        border-radius: 4px;
-        outline: none;
-        cursor: pointer;
-        user-select: none;
-      }
-      :host::before,
-      :host::after {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        border-radius: inherit;
-        content: "";
-      }
-      :host::before {
-        opacity: 0;
-        transition: all 50ms;
-      }
-      :host(:hover)::before {
-        background: var(--oxy-button-hover-color, currentcolor);
-        opacity: 0.1;
-      }
-      :host(:active)::before,
-      :host([active])::before {
-        background: var(--oxy-button-active-color, currentcolor);
-        opacity: 0.2;
-      }
-      :host(:focus-visible)::after {
-        box-shadow: 0 0 0 2px var(--oxy-button-focus-color, cornflowerblue);
-      }
-      :host([disabled]) {
-        opacity: 0.5;
-        pointer-events: none;
-      }
-      :host([raised]) {
-        padding: 8px 16px;
-        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-                    0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                    0 1px 5px 0 rgba(0, 0, 0, 0.12);
-      }
-      :host([text]) {
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-size: 0.85em;
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      position: relative;
+      font-weight: 500;
+      background: transparent;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      user-select: none;
+    }
+    :host::before,
+    :host::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      content: "";
+    }
+    :host::before {
+      opacity: 0;
+      transition: all 50ms;
+    }
+    :host(:hover)::before {
+      background: var(--oxy-button-hover-color, currentcolor);
+      opacity: 0.1;
+    }
+    :host(:active)::before,
+    :host([active])::before {
+      background: var(--oxy-button-active-color, currentcolor);
+      opacity: 0.2;
+    }
+    :host(:focus-visible)::after {
+      box-shadow: 0 0 0 2px var(--oxy-button-focus-color, cornflowerblue);
+    }
+    :host([disabled]) {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    :host([raised]) {
+      padding: 8px 16px;
+      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                  0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                  0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+    :host([text]) {
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85em;
+    }
+  `;
 
   private keyboardController = new KeyboardController(this);
 
@@ -81,12 +79,12 @@ export class OxyButton extends LitElement {
     this.keyboardController.setClickOnSpaceUp();
   }
 
-  firstUpdated() {
+  override firstUpdated() {
     this.setAttribute('tabindex', '0');
     this.setAttribute('role', 'button');
   }
 
-  updated(changedProps: Map<string, any>) {
+  override updated(changedProps: Map<string, any>) {
     if (changedProps.has('disabled')) {
       if (this.disabled) {
         this.setAttribute('aria-disabled', 'true');
@@ -96,7 +94,7 @@ export class OxyButton extends LitElement {
     }
   }
 
-  render() {
+  override render() {
     return html`<slot></slot>`;
   }
 }

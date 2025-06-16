@@ -15,64 +15,62 @@ import {customElement, property, query} from 'lit/decorators.js';
  */
 @customElement('oxy-dialog')
 export class OxyDialog extends LitElement {
-    static get styles() {
-    return css`
-      :host {
-        display: none;
-      }
-      :host([opened]) {
-        display: block;
-      }
-      #backdrop {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: var(--oxy-dialog-backdrop-background, rgba(0, 0, 0, 0.3));
-        z-index: 10;
-      }
-      #layout {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        z-index: 11;
-        pointer-events: none;
-      }
-      #dialog {
-        background: var(--oxy-dialog-background, white);
-        color: var(--oxy-dialog-text-color, currentcolor);
-        min-width: var(--oxy-dialog-min-width, 200px);
-        max-width: var(--oxy-dialog-max-width, 500px);
-        max-height: var(--oxy-dialog-max-height, 80%);
-        flex-shrink: 0;
-        box-shadow: var(--oxy-dialog-box-shadow, 0 8px 64px rgba(0, 0, 0, 0.5));
-        border-radius: 4px;
-        pointer-events: auto;
-      }
-      h2 {
-        font-size: 1.2em;
-        line-height: 2em;
-        margin: 0;
-        padding: 16px 16px 8px 16px;
-      }
-      slot[name="buttons"] {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        padding: 16px 8px 8px 8px;
-      }
-      [hidden] {
-        display: none !important;
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: none;
+    }
+    :host([opened]) {
+      display: block;
+    }
+    #backdrop {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--oxy-dialog-backdrop-background, rgba(0, 0, 0, 0.3));
+      z-index: 10;
+    }
+    #layout {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 11;
+      pointer-events: none;
+    }
+    #dialog {
+      background: var(--oxy-dialog-background, white);
+      color: var(--oxy-dialog-text-color, currentcolor);
+      min-width: var(--oxy-dialog-min-width, 200px);
+      max-width: var(--oxy-dialog-max-width, 500px);
+      max-height: var(--oxy-dialog-max-height, 80%);
+      flex-shrink: 0;
+      box-shadow: var(--oxy-dialog-box-shadow, 0 8px 64px rgba(0, 0, 0, 0.5));
+      border-radius: 4px;
+      pointer-events: auto;
+    }
+    h2 {
+      font-size: 1.2em;
+      line-height: 2em;
+      margin: 0;
+      padding: 16px 16px 8px 16px;
+    }
+    slot[name="buttons"] {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding: 16px 8px 8px 8px;
+    }
+    [hidden] {
+      display: none !important;
+    }
+  `;
 
   private readonly keyListener = this.onKeydown.bind(this);
   private savedFocus: HTMLElement|undefined;
@@ -85,7 +83,7 @@ export class OxyDialog extends LitElement {
   @property({type: Boolean}) noescape = false;
   @property({type: Boolean}) showBackdrop = false;
 
-  updated(changedProps: Map<string, any>) {
+  override updated(changedProps: Map<string, any>) {
     if (changedProps.has('opened')) {
       if (this.opened) {
         this.afterOpen();
@@ -95,7 +93,7 @@ export class OxyDialog extends LitElement {
     }
   }
 
-  render() {
+  override render() {
     return html`
       <div
           id="backdrop"

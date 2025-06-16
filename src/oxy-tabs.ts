@@ -12,37 +12,30 @@ import {customElement, property} from 'lit/decorators.js';
  */
 @customElement('oxy-tabs')
 export class OxyTabs extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: flex;
-        user-select: none;
-      }
-      :host([orientation="horizontal"]) {
-        flex-direction: row;
-        border-bottom: var(--oxy-tabs-border, 1px solid #ccc);
-      }
-      :host([orientation="vertical"]) {
-        flex-direction: column;
-        border-left: var(--oxy-tabs-border, 1px solid #ccc);
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: flex;
+      user-select: none;
+    }
+    :host([orientation="horizontal"]) {
+      flex-direction: row;
+      border-bottom: var(--oxy-tabs-border, 1px solid #ccc);
+    }
+    :host([orientation="vertical"]) {
+      flex-direction: column;
+      border-left: var(--oxy-tabs-border, 1px solid #ccc);
+    }
+  `;
 
   @property({type: String, reflect: true}) orientation = 'horizontal';
   @property({type: Number, reflect: true}) selected = 0;
 
-  constructor() {
-    super();
+  override firstUpdated() {
     this.setAttribute('role', 'tablist');
     this.addEventListener('click', this.onClick);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-  }
-
-  updated(changedProps: Map<string, any>) {
+  override updated(changedProps: Map<string, any>) {
     if (changedProps.has('orientation')) {
       this.applyOrientationToChildren();
     }
@@ -51,7 +44,7 @@ export class OxyTabs extends LitElement {
     }
   }
 
-  render() {
+  override render() {
     return html`<slot></slot>`;
   }
 

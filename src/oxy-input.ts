@@ -7,49 +7,47 @@ import {customElement, property} from 'lit/decorators.js';
  */
 @customElement('oxy-input')
 export class OxyInput extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: flex;
-        flex-direction: column;
-        margin: 2px 0;
-      }
-      :host([disabled]) {
-        opacity: 0.5;
-      }
-      #container {
-        display: flex;
-        align-items: center;
-        flex-shrink: 0;
-        background: var(--oxy-input-background, white);
-        border: var(--oxy-input-border, 1px solid #ddd);
-        border-radius: var(--oxy-input-border-radius, 2px);
-        box-shadow: var(--oxy-input-box-shadow, 0 0 0 white);
-        transition: all 25ms;
-      }
-      :host([focused]) #container {
-        background: var(--oxy-input-background-focused, white);
-        border: var(--oxy-input-border-focused, 1px solid #aaa);
-        box-shadow: var(--oxy-input-box-shadow-focused, 0 0 0 white);
-      }
-      input {
-        flex-grow: 1;
-        color: var(--oxy-input-text-color, currentcolor);
-        font: inherit;
-        padding: 0;
-        margin: var(--oxy-input-text-padding, 6px);
-        border: none;
-        box-shadow: none;
-        outline: none;
-        background: transparent;
-        text-align: inherit;
-        width: 0;
-      }
-      input::placeholder {
-        color: var(--oxy-input-placeholder-color, gray);
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: flex;
+      flex-direction: column;
+      margin: 2px 0;
+    }
+    :host([disabled]) {
+      opacity: 0.5;
+    }
+    #container {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      background: var(--oxy-input-background, white);
+      border: var(--oxy-input-border, 1px solid #ddd);
+      border-radius: var(--oxy-input-border-radius, 2px);
+      box-shadow: var(--oxy-input-box-shadow, 0 0 0 white);
+      transition: all 25ms;
+    }
+    :host([focused]) #container {
+      background: var(--oxy-input-background-focused, white);
+      border: var(--oxy-input-border-focused, 1px solid #aaa);
+      box-shadow: var(--oxy-input-box-shadow-focused, 0 0 0 white);
+    }
+    input {
+      flex-grow: 1;
+      color: var(--oxy-input-text-color, currentcolor);
+      font: inherit;
+      padding: 0;
+      margin: var(--oxy-input-text-padding, 6px);
+      border: none;
+      box-shadow: none;
+      outline: none;
+      background: transparent;
+      text-align: inherit;
+      width: 0;
+    }
+    input::placeholder {
+      color: var(--oxy-input-placeholder-color, gray);
+    }
+  `;
 
   private input: HTMLInputElement|null = null;
 
@@ -64,7 +62,7 @@ export class OxyInput extends LitElement {
   @property({type: Boolean}) clearOnEscape = false;
   @property({type: Boolean}) autofocus = false;
 
-  render() {
+  override render() {
     return html`
       <div id="container" @click=${this.focus}>
         <slot name="before"></slot>
@@ -86,7 +84,7 @@ export class OxyInput extends LitElement {
     `;
   }
 
-  firstUpdated() {
+  override firstUpdated() {
     if (this.autofocus) {
       setTimeout(() => this.focus(), 0);
     }

@@ -6,68 +6,66 @@ import {customElement, property} from 'lit/decorators.js';
  */
 @customElement('oxy-slider')
 export class OxySlider extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: flex;
-        flex-direction: column;
-        min-width: 150px;
-        position: relative;
+  static styles = css`
+    :host {
+      display: flex;
+      flex-direction: column;
+      min-width: 150px;
+      position: relative;
 
-        border-radius: 4px;
-        outline: none;
-        cursor: pointer;
-        user-select: none;
-      }
-      :host([disabled]) {
-        opacity: 0.5;
-        pointer-events: none;
-      }
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      user-select: none;
+    }
+    :host([disabled]) {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
-      :host::after {
-        position: absolute;
-        top: 0;
-        left: -2px;
-        bottom: 0;
-        right: -2px;
-        pointer-events: none;
-        border-radius: inherit;
-        content: "";
-      }
-      :host(:focus-visible)::after {
-        box-shadow: 0 0 0 2px var(--oxy-slider-focus-color, cornflowerblue);
-      }
+    :host::after {
+      position: absolute;
+      top: 0;
+      left: -2px;
+      bottom: 0;
+      right: -2px;
+      pointer-events: none;
+      border-radius: inherit;
+      content: "";
+    }
+    :host(:focus-visible)::after {
+      box-shadow: 0 0 0 2px var(--oxy-slider-focus-color, cornflowerblue);
+    }
 
-      #container {
-        position: relative;
-      }
-      #track {
-        background-color: var(--oxy-slider-track-color, #666);
-        height: var(--oxy-slider-track-height, 2px);
-        margin: 16px 0;
-      }
-      :host(:active) #track {
-        background-color: var(--oxy-slider-track-active-color,
-            var(--oxy-slider-track-color, #666));
-      }
-      #thumb {
-        position: absolute;
-        top: calc(50% - var(--oxy-slider-thumb-size, 14px) / 2);
-        left: 0%;
-        transform: translateX(-50%);
+    #container {
+      position: relative;
+    }
+    #track {
+      background-color: var(--oxy-slider-track-color, #666);
+      height: var(--oxy-slider-track-height, 2px);
+      margin: 16px 0;
+    }
+    :host(:active) #track {
+      background-color: var(--oxy-slider-track-active-color,
+          var(--oxy-slider-track-color, #666));
+    }
+    #thumb {
+      position: absolute;
+      top: calc(50% - var(--oxy-slider-thumb-size, 14px) / 2);
+      left: 0%;
+      transform: translateX(-50%);
 
-        background-color: var(--oxy-slider-thumb-color, #333);
-        width: var(--oxy-slider-thumb-size, 14px);
-        height: var(--oxy-slider-thumb-size, 14px);
-        border-radius: var(--oxy-slider-thumb-radius, 4px);
-      }
-      :host(:active) #thumb {
-        background-color: var(--oxy-slider-thumb-active-color,
-            var(--oxy-slider-thumb-color, #333));
-        transform: translateX(-50%) scale(1.2);
-      }
-    `;
-  }
+      background-color: var(--oxy-slider-thumb-color, #333);
+      width: var(--oxy-slider-thumb-size, 14px);
+      height: var(--oxy-slider-thumb-size, 14px);
+      border-radius: var(--oxy-slider-thumb-radius, 4px);
+    }
+    :host(:active) #thumb {
+      background-color: var(--oxy-slider-thumb-active-color,
+          var(--oxy-slider-thumb-color, #333));
+      transform: translateX(-50%) scale(1.2);
+    }
+  `;
 
   private thumb: HTMLElement|undefined;
   private container: HTMLElement|undefined;
@@ -79,7 +77,7 @@ export class OxySlider extends LitElement {
   @property({type: Number}) max: number = 100;
   @property({type: Number}) value: number = 0;
 
-  firstUpdated() {
+  override firstUpdated() {
     this.setAttribute('role', 'slider');
     this.setAttribute('tabindex', '0');
     if (!this.shadowRoot) return;
@@ -87,7 +85,7 @@ export class OxySlider extends LitElement {
     this.container = this.shadowRoot.getElementById('container') as HTMLElement;
   }
 
-  updated(updatedProps: Map<string, any>) {
+  override updated(updatedProps: Map<string, any>) {
     if (updatedProps.has('min') || updatedProps.has('max')) {
       this.setAttribute('aria-valuemin', this.min.toString());
       this.setAttribute('aria-valuemax', this.max.toString());
@@ -107,7 +105,7 @@ export class OxySlider extends LitElement {
     }
   }
 
-  render() {
+  override render() {
     return html`
       <div
           id="container"

@@ -8,41 +8,39 @@ import {customElement, property} from 'lit/decorators.js';
  */
 @customElement('oxy-toast')
 export class OxyToast extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        position: fixed;
-        bottom: 16px;
-        left: 16px;
-        z-index: 3;
+  static styles = css`
+    :host {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      z-index: 3;
 
-        opacity: 0;
-        transform: translateY(100px);
-        transition: transform 200ms, opacity 200ms;
-      }
-      :host([opened]) {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      #container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        min-height: 40px;
-        box-sizing: border-box;
-        padding: 8px 16px;
-        background: var(--oxy-toast-background, #090909);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-      }
-    `;
-  }
+      opacity: 0;
+      transform: translateY(100px);
+      transition: transform 200ms, opacity 200ms;
+    }
+    :host([opened]) {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      min-height: 40px;
+      box-sizing: border-box;
+      padding: 8px 16px;
+      background: var(--oxy-toast-background, #090909);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+  `;
 
   private timeoutId: number = -1;
 
   @property({type: Boolean, reflect: true}) opened = false;
   @property({type: String}) message = '';
 
-  render() {
+  override render() {
     return html`
       <div id="container">
         <div id="message" ?hidden=${!this.message}>${this.message}</div>
