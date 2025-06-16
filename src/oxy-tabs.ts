@@ -16,6 +16,7 @@ export class OxyTabs extends LitElement {
     return css`
       :host {
         display: flex;
+        user-select: none;
       }
       :host([orientation="horizontal"]) {
         flex-direction: row;
