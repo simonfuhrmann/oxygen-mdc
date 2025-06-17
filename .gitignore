@@ -6,3 +6,8 @@ package-lock.json
 /oxy-*.js
 /oxy-*.d.ts
 /utils/
+/dist/
+
+# Tool artifacts.
+/.vscode/
+/.firebase/

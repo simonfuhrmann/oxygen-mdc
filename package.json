@@ -16,8 +16,9 @@
   "scripts": {
     "demo": "npm run build-demo -- --servedir=demo",
     "build-demo": "esbuild demo/oxy-demo.ts --bundle --minify --outfile=demo/oxy-demo.mjs",
+    "deploy-demo": "npm run build-demo && mkdir -p dist; cp demo/index.html demodd/oxy-demo.mjs dist/",
     "prepublish": "tsc",
-    "clean": "rm oxy-*.js oxy-*.d.ts"
+    "clean": "rm -rf oxy-*.js oxy-*.d.ts dist/ utils/"
   },
   "dependencies": {
     "lit": "^3.3.0"
