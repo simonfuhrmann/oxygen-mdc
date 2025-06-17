@@ -9,6 +9,8 @@ import '../src/oxy-icon';
 import '../src/oxy-icons-base';
 import '../src/oxy-input';
 import '../src/oxy-textarea';
+import '../src/oxy-radio';
+import '../src/oxy-radio-group';
 import '../src/oxy-slider';
 import '../src/oxy-tabs';
 import '../src/oxy-tab';
@@ -90,7 +92,7 @@ export class OxyDemoElements extends LitElement {
 
     #checkbox {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-self: center;
     }
     :host([light]) oxy-checkbox {
@@ -99,6 +101,26 @@ export class OxyDemoElements extends LitElement {
     :host([dark]) oxy-checkbox {
       --oxy-checkbox-unchecked-background: var(--dark-theme-c5);
       --oxy-checkbox-unchecked-border: none;
+    }
+
+    /* Radio styles. */
+
+    #radio {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-self: center;
+    }
+    :host([light]) oxy-radio {
+      --oxy-radio-unchecked-background: white;
+      --oxy-radio-checked-background: white;
+    }
+    :host([dark]) oxy-radio {
+      --oxy-radio-unchecked-background: var(--dark-theme-c5);
+      --oxy-radio-unchecked-border: none;
+      --oxy-radio-checked-background: #28f;
+      --oxy-radio-check-color: white;
+      --oxy-radio-check-inset: 5px;
     }
 
     /* Icon styles. */
@@ -212,11 +234,30 @@ export class OxyDemoElements extends LitElement {
       <div class="paper-card">
         <h2>&lt;oxy-checkbox&gt;</h2>
         <div id="checkbox">
-          <oxy-checkbox>Normal state</oxy-checkbox>
-          <oxy-checkbox checked>Checked state</oxy-checkbox>
-          <oxy-checkbox indeterminate>Indeterminate state</oxy-checkbox>
-          <oxy-checkbox disabled>Disabled state</oxy-checkbox>
-          <oxy-checkbox disabled checked>Disabled checked</oxy-checkbox>
+          <div>
+            <oxy-checkbox>Normal state</oxy-checkbox>
+            <oxy-checkbox checked>Checked state</oxy-checkbox>
+            <oxy-checkbox indeterminate>Indeterminate state</oxy-checkbox>
+          </div>
+          <div>
+            <oxy-checkbox disabled>Disabled state</oxy-checkbox>
+            <oxy-checkbox disabled checked>Disabled checked</oxy-checkbox>
+            <oxy-checkbox disabled indeterminate>Disabled indeterminate</oxy-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <div class="paper-card">
+        <h2>&lt;oxy-radio&gt;</h2>
+        <div id="radio">
+          <oxy-radio-group>
+            <oxy-radio>Normal state</oxy-radio>
+            <oxy-radio checked>Checked state</oxy-radio>
+          </oxy-radio-group>
+          <oxy-radio-group>
+            <oxy-radio disabled>Disabled state</oxy-radio>
+            <oxy-radio disabled checked>Disabled checked</oxy-radio>
+          </oxy-radio-group>
         </div>
       </div>
 
@@ -289,7 +330,6 @@ export class OxyDemoElements extends LitElement {
   }
 
   private onCloseIconDialog() {
-    console.log('closed');
     this.iconDialogOpened = false;
   }
 }
