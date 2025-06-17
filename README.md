@@ -9,7 +9,7 @@ Demo: https://oxygen-mdc.web.app/
 
 Install the Oxygen web components in:
 
-```
+```bash
 npm install --save oxygen-mdc
 ```
 
@@ -27,14 +27,20 @@ Finally, use the component in your code:
 
 ## Bugs and missing features
 
-* Missing support for keyboard navigation: Buttons, checkboxes, tabs, etc.
-  cannot be activated with Enter or Space.
 * The slider cannot be changed with the keyboard. On mobile, trying to change
   the slider may scroll the page.
 * Tabbing through elements in dialogs is broken, focus trapping and focus
   restore is not properly implemented.
 
 ## Changelog
+
+### Version 1.3.0
+
+* Added `oxy-radio` and `oxy-radio-group` radio button components.
+* Support for keyboard interaction with the focused element.
+* Switched from Parcel to ESBuild for bundling the demo app.
+* Refactored styles from `static get styles()` to `static styles` field.
+* Refactored to use `override` on all overridden member functions.
 
 ### Version 1.2.0
 
@@ -56,7 +62,7 @@ simplifications have been done.
 
 API breaking changes for Version 1.0.0
 
-#### <oxy-button>
+#### `<oxy-button>`
 
 * Removed `--oxy-button-background-color` as it can be styled on the host
 * Changed `oxy-button`'s host style from `background-color` to `background`
@@ -65,18 +71,18 @@ API breaking changes for Version 1.0.0
 * Added `active` property for `oxy-button` which is set during activation, e.g.,
   while the mouse button is pressed
 
-#### <oxy-checkbox>
+#### `<oxy-checkbox>`
 
 * Changed `oxy-checkbox`'s focus to use blue outline by default
 * Added `--oxy-checkbox-checked-border` variable
 * Added `--oxy-checkbox-focus-color` variable
 
-#### <oxy-dialog>
+#### `<oxy-dialog>`
 
 * Default for `--oxy-dialog-text-color` is now inherited from parent
 * The `oxy-dialog` can now be styled with the CSS part `dialog`
 
-#### <oxy-input>
+#### `<oxy-input>`
 
 * Added `oxy-input` styles for the disabled state
 * Changed `--oxy-input-background-color` on `background-color` to
@@ -87,18 +93,18 @@ API breaking changes for Version 1.0.0
   `--oxy-input-border-focused` which defines all border attributes
 * Default for `--oxy-input-text-color` is now inherited from parent
 
-#### <oxy-slider>
+#### `<oxy-slider>`
 
 * Added `--oxy-slider-focus-color` variable
 * Added `--oxy-slider-track-height` variable
 * Added `--oxy-slider-thumb-size` and `--oxy-slider-thumb-radius` variables
 
-#### <oxy-tabs>
+#### `<oxy-tabs>`
 
 * Replaced `--oxy-tabs-border-color` with `--oxy-tabs-border` which
   defines all border attributes
 
-#### <oxy-textarea>
+#### `<oxy-textarea>`
 
 * Default for `--oxy-textarea-text-color` is now inherited from parent
 * Changed `--oxy-textarea-background-color` on `background-color` to

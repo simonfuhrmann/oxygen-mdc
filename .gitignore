@@ -1,4 +1,8 @@
+# NPM artifacts.
 node_modules/
 package-lock.json
-oxy-*.js
-oxy-*.d.ts
+
+# Build artifacts.
+/oxy-*.js
+/oxy-*.d.ts
+/utils/
