@@ -11,7 +11,7 @@ import { OxyRadio } from './oxy-radio';
  */
 @customElement('oxy-radio-group')
 export class OxyRadioGroup extends LitElement {
-  private onChangeCb = this.onChange.bind(this);
+  private readonly onChangeCb = this.onChange.bind(this);
 
   @query('slot') slotElem?: HTMLSlotElement;
 

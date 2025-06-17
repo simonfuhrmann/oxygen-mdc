@@ -59,8 +59,9 @@ export class OxyRadio extends LitElement {
     }
     #radio {
       flex-shrink: 0;
-      width: calc(1em + 4px);
-      height: calc(1em + 4px);
+      width: calc(1em + 3px);
+      height: calc(1em + 3px);
+      margin: 2px;
       border-radius: 50%;
       box-sizing: border-box;
       border: var(--oxy-radio-unchecked-border, 2px solid gray);
