@@ -25,10 +25,7 @@ export class OxyCheckbox extends LitElement {
 
     :host::after {
       position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
+      inset: 0;
       pointer-events: none;
       border-radius: inherit;
       content: "";
@@ -124,9 +121,7 @@ export class OxyCheckbox extends LitElement {
   override render() {
     return html`
       <div id="checkbox"></div>
-      <div id="label">
-        <slot></slot>
-      </div>
+      <div id="label"><slot></slot></div>
     `;
   }
 
