@@ -52,6 +52,7 @@ export class KeyboardController implements ReactiveController {
     switch (event.key) {
       case ' ':
         if (this.isActiveDuringSpace()) {
+          event.preventDefault();
           event.stopPropagation();
           this.setHostActive();
         }
@@ -104,27 +105,27 @@ export class KeyboardController implements ReactiveController {
     this.host.click();
   }
 
-  private isActiveDuringSpace() {
-    return this.hostActions & HostAction.SET_ACTIVE_DURING_SPACE;
-  }
-
-  private isActiveDuringEnter() {
-    return this.hostActions & HostAction.SET_ACTIVE_DURING_ENTER;
-  }
-
-  private hasClickOnEnterDown() {
-    return this.hostActions & HostAction.CLICK_ON_ENTER_DOWN;
-  }
-
-  private hasClickOnSpaceUp() {
-    return this.hostActions & HostAction.CLICK_ON_SPACE_UP;
-  }
-
   private setHostActive() {
     this.host.setAttribute('active', 'active');
   }
 
   private removeHostActive() {
     this.host.removeAttribute('active');
+  }
+
+  private isActiveDuringSpace(): boolean {
+    return !!(this.hostActions & HostAction.SET_ACTIVE_DURING_SPACE);
+  }
+
+  private isActiveDuringEnter(): boolean {
+    return !!(this.hostActions & HostAction.SET_ACTIVE_DURING_ENTER);
+  }
+
+  private hasClickOnEnterDown(): boolean {
+    return !!(this.hostActions & HostAction.CLICK_ON_ENTER_DOWN);
+  }
+
+  private hasClickOnSpaceUp(): boolean {
+    return !!(this.hostActions & HostAction.CLICK_ON_SPACE_UP);
   }
 }
